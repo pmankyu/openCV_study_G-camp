@@ -10,6 +10,7 @@ void imgtest();
 void morph_test(char *name);
 void Split_merge_test();
 int Video_test();
+int solve1(char *name);
 
 int main(int argc, char **argv){
 	char * name;
@@ -20,6 +21,7 @@ int main(int argc, char **argv){
 	else
 		name = argv[1];
 
+	solve1(name);
 	//testVideo();
 	//Video_test();
 	//Split_merge_test();
@@ -86,8 +88,7 @@ int main(int argc, char **argv){
 
 	//thresh_test(name); // ("images/lenna_gray_400.tif");
 	//thresh_otsu(name); // ("images/Fig10_std_50.tif");
-	adaptive_threshold_test(name); // ("images/lenna_gray_400.tif");
-
+	//adaptive_threshold_test(name); // ("images/lenna_gray_400.tif");
 	
 	//frame_MOG2("images/Highway-Surveillance.mp4");
 
@@ -138,6 +139,17 @@ int main(int argc, char **argv){
   }
   */
 }
+
+int solve1(char *name){
+	Mat img = imread(name, IMREAD_COLOR);
+	Mat dst;
+
+	cvtColor(img, dst, COLOR_BGR2HSV);
+	imshow("img", img);
+
+	waitKey(0);
+}
+
 
 int Video_test(){
 	Mat frame;

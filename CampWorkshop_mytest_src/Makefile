@@ -9,7 +9,7 @@ LIBS = $(OPENCV)
 .PHONY: all clean
 
 $(PROG):$(SRCS)
-	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) thresh.cpp hist_contrast.cpp $(LIBS)
+	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) $(LIBS)
 
 all: $(PROG)
 
