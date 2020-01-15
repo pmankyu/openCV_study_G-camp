@@ -1,4 +1,4 @@
-#include "opencv.hpp"
+#include "opencv2/opencv.hpp"
 
 /* WARPING POINT */
 #define WARP_POINT0_X 15 
@@ -84,7 +84,7 @@ int checkPoly(vector<Point>& poly)
 		if (((cornerRate[0] >= (1 - margin)) && (cornerRate[0] <= (1 + margin))) &&
 			((cornerRate[1] >= (1 - margin)) && (cornerRate[1] <= (1 + margin))) &&
 			((cornerRate[2] >= (1.4 - margin)) && (cornerRate[2] <= (1.4 + margin))))
-			return 0; 	//Á÷°¢»ï°¢Çü - 1:1:1.4
+			return 0; 	//ï¿½ï¿½ï¿½ï¿½ï¿½ï°¢ï¿½ï¿½ - 1:1:1.4
 		else return 1;
 	}
 	else if (corner.size() == 4) {
@@ -92,13 +92,13 @@ int checkPoly(vector<Point>& poly)
 			((cornerRate[1] >= (1 - margin)) && (cornerRate[1] <= (1 + margin))) &&
 			((cornerRate[2] >= (1 - margin)) && (cornerRate[2] <= (1 + margin))) &&
 			((cornerRate[3] >= (1 - margin)) && (cornerRate[3] <= (1 + margin))))
-			return 0; //Á¤»ç°¢Çü - 1:1:1:1
+			return 0; //ï¿½ï¿½ï¿½ç°¢ï¿½ï¿½ - 1:1:1:1
 
 		else if (((cornerRate[0] >= (1 - margin)) && (cornerRate[0] <= (1 + margin))) &&
 			((cornerRate[1] >= (1 - margin)) && (cornerRate[1] <= (1 + margin))) &&
 			((cornerRate[2] >= (1.4 - margin)) && (cornerRate[2] <= (1.4 + margin))) &&
 			((cornerRate[3] >= (1.4 - margin)) && (cornerRate[3] <= (1.4 + margin))))
-			return 0; //ÆòÇà»çº¯ - 1:1:1.4:1.4
+			return 0; //ï¿½ï¿½ï¿½ï¿½çº¯ - 1:1:1.4:1.4
 
 		else return 1;
 	}

@@ -45,6 +45,13 @@ void mytest() {
 	waitKey(0);
 }
 
+void mytest2(){
+	Mat img = imread(".//images//lena.jpg",1);
+	namedWindow("image");
+	imshow("image", img);
+	waitKey(0);
+}
+
 void morph_test(char *name) {
 	Mat img = imread(name);
 	Mat gray;
@@ -74,7 +81,7 @@ int main(int argc, char **argv){
 	else
 		name = argv[1];
 
-	mytest();
+	mytest2();
 
 	//testVideo();
 	//mytest();

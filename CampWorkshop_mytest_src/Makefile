@@ -9,7 +9,7 @@ LIBS = $(OPENCV)
 .PHONY: all clean
 
 $(PROG):$(SRCS)
-	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) $(LIBS) 
+	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) $(LIBS)
 
 all: $(PROG)
 
