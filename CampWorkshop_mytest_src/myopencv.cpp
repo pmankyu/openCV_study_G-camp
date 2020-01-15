@@ -1,5 +1,4 @@
-
-#include "opencv.hpp"
+#include "opencv2/opencv.hpp"
 #include "myopencv.h"
 
 using namespace cv;
@@ -75,6 +74,8 @@ int main(int argc, char **argv){
 	else
 		name = argv[1];
 
+	mytest();
+
 	//testVideo();
 	//mytest();
 	//morph_test("images/Fig09_mask.tif");
@@ -136,7 +137,7 @@ int main(int argc, char **argv){
 
 	//thresh_test(name); // ("images/lenna_gray_400.tif");
 	//thresh_otsu(name); // ("images/Fig10_std_50.tif");
-	adaptive_threshold_test(name); // ("images/lenna_gray_400.tif");
+	//adaptive_threshold_test(name); // ("images/lenna_gray_400.tif");
 
 	
 	//frame_MOG2("images/Highway-Surveillance.mp4");
@@ -169,7 +170,7 @@ int main(int argc, char **argv){
 	//img_box("../testimg/t_1.JPG");
 	
 	//watershed_test(name);
-
+/*
   int selector = 0;
   if (argc > 2) {
 	  selector = atoi(argv[2]);
@@ -186,6 +187,7 @@ int main(int argc, char **argv){
 	  default: cout << "none selected" << endl;
 	  }
   }
+  */
 }
 
 
