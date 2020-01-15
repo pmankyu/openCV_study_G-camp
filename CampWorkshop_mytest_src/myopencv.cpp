@@ -4,84 +4,26 @@
 using namespace cv;
 using namespace std;
 
-void testVideo() {
-	VideoCapture cap(0);
-	Mat frame;
-	Mat prevframe;
-	cap >> prevframe;
-	cvtColor(prevframe, prevframe, COLOR_BGR2GRAY);
-	Mat difframe;
-	while (1) {
-		cap >> frame;
-		if (frame.empty())
-			break;
-		cvtColor(frame, frame, COLOR_BGR2GRAY);
+int testVideo();
+void mytest();
+void imgtest();
+void morph_test(char *name);
+void Split_merge_test();
+int Video_test();
 
-		absdiff(frame, prevframe, difframe);
-		prevframe = frame.clone();
-		imshow("frame", frame);
-		threshold(difframe, difframe, 30, 255, THRESH_BINARY);
-		imshow("framdiff", difframe);
-		int key = waitKey(33);
-		if (key == ' ')
-			break;
-	}
-}
-
-void mytest() {
-	Mat A(100, 200, CV_8UC3, Scalar(255,0,0));
-	Mat T(A, Rect(30, 50, 100, 50));
-	Mat B;
-
-	//T.copyTo(B);
-	B = T.clone();
-
-	imshow("A1", A);
-	imshow("B1", B);
-
-	B = Scalar(0, 0, 255);
-	imshow("A2", A);
-	imshow("B2", B);
-	waitKey(0);
-}
-
-void mytest2(){
-	Mat img = imread(".//images//lena.jpg",1);
-	namedWindow("image");
-	imshow("image", img);
-	waitKey(0);
-}
-
-void morph_test(char *name) {
-	Mat img = imread(name);
-	Mat gray;
-
-	cvtColor(img, gray, COLOR_BGR2GRAY);
-	imshow("gray", gray);
-
-	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
-	Mat erd, dil, gray2;
-	morphologyEx(gray, gray2, MORPH_OPEN, element);
-	//erode(gray, erd, element, Point(-1, -1), 1);
-	//dilate(erd, gray2, element, Point(-1, -1), 1);
-	//imshow("erode", erd);
-	imshow("erd-dil", gray2);
-
-	dilate(gray, dil, element, Point(-1, -1), 1);
-	imshow("dilate", dil);
-
-	waitKey(0);
-}
 int main(int argc, char **argv){
 	char * name;
 	if (argc < 2){
-		cout << "Too few arguments" << endl;
-		return 0;
+		//cout << "Too few arguments" << endl;
+		//return 0;
 	}
 	else
 		name = argv[1];
 
-	mytest2();
+	testVideo();
+	//Video_test();
+	//Split_merge_test();
+	//imgtest();
 
 	//testVideo();
 	//mytest();
@@ -197,5 +139,117 @@ int main(int argc, char **argv){
   */
 }
 
+int Video_test(){
+	Mat frame;
+	VideoCapture cap(".//images//video.mp4");
 
+	if(!cap.isOpened()){
+		cerr << "file open fail!" << endl;
+		return -1;
+	}
 
+	while(1){
+		cap >> frame;
+		if(frame.empty()){
+			cerr << "empty frame" << endl;
+			break;
+		}
+
+		imshow("vid", frame);
+		waitKey(33);
+	}
+}
+
+void Split_merge_test(){
+	Mat img1 = imread(".//images//marco.jpg",1);
+	Mat img2 = imread(".//images//rain.jpeg",1);
+
+	Mat result;
+	Mat img2_gray;
+	vector<Mat> channels;
+
+	resize(img1, img1, Size(300,300));
+	resize(img2, img2, Size(300,300));
+	cvtColor(img2, img2_gray, COLOR_BGR2GRAY);
+	imshow("marco_orig",img1);
+	imshow("rain_orig",img2);
+	imshow("rain_gray",img2_gray);
+
+	split(img1, channels);
+	channels[1] += img2_gray;
+	imshow("marco_ch[1]",channels[1]);
+	merge(channels, result);
+	imshow("result",result);
+
+	waitKey(0);
+}
+
+int testVideo() {
+	VideoCapture cap("/dev/video2");
+	Mat frame;
+	Mat prevframe;
+	cap >> prevframe;
+	cvtColor(prevframe, prevframe, COLOR_BGR2GRAY);
+	Mat difframe;
+	while (1) {
+		cap >> frame;
+		if (frame.empty())
+			break;
+		cvtColor(frame, frame, COLOR_BGR2GRAY);
+
+		absdiff(frame, prevframe, difframe);
+		prevframe = frame.clone();
+		imshow("frame", frame);
+		threshold(difframe, difframe, 30, 255, THRESH_BINARY);
+		imshow("framdiff", difframe);
+		int key = waitKey(33);
+		if (key == ' ')
+			break;
+	}
+	
+}
+
+void mytest() {
+	Mat A(100, 200, CV_8UC3, Scalar(255,0,0));
+	Mat T(A, Rect(30, 50, 100, 50));
+	Mat B;
+
+	//T.copyTo(B);
+	B = T.clone();
+
+	imshow("A1", A);
+	imshow("B1", B);
+
+	B = Scalar(0, 0, 255);
+	imshow("A2", A);
+	imshow("B2", B);
+	waitKey(0);
+}
+
+void imgtest(){
+	Mat img = imread(".//images//lena.jpg",1);
+	namedWindow("image");
+	imshow("image", img);
+	waitKey(0);
+}
+
+void morph_test(char *name) {
+	Mat img = imread(name);
+	Mat gray;
+
+	cvtColor(img, gray, COLOR_BGR2GRAY);
+	imshow("gray", gray);
+
+	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
+	Mat erd, dil, gray2;
+	morphologyEx(gray, gray2, MORPH_OPEN, element);
+	//erode(gray, erd, element, Point(-1, -1), 1);
+	//dilate(erd, gray2, element, Point(-1, -1), 1);
+	//imshow("erode", erd);
+	imshow("erd-dil", gray2);
+
+	dilate(gray, dil, element, Point(-1, -1), 1);
+	imshow("dilate", dil);
+
+	waitKey(0);
+}
