@@ -143,9 +143,22 @@ int main(int argc, char **argv){
 int solve1(char *name){
 	Mat img = imread(name, IMREAD_COLOR);
 	Mat dst;
+	Mat process1;
+
+	vector <Mat> channels;
 
 	cvtColor(img, dst, COLOR_BGR2HSV);
-	imshow("img", img);
+	split(dst,channels);
+
+	imshow("original image", img);
+	imshow("convert to HSV", dst);
+	imshow("H", channels[0]);
+	imshow("S", channels[1]);
+	imshow("V", channels[2]);
+
+	inRange(channels[0], 0, 2, process1);
+
+	imshow("process1", process1);
 
 	waitKey(0);
 }
