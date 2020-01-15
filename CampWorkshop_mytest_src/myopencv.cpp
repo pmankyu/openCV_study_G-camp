@@ -20,7 +20,7 @@ int main(int argc, char **argv){
 	else
 		name = argv[1];
 
-	testVideo();
+	//testVideo();
 	//Video_test();
 	//Split_merge_test();
 	//imgtest();
@@ -36,7 +36,7 @@ int main(int argc, char **argv){
 	//basic_traversal("images/Fig06_lenna.tif");
 	//negative_test("images/Fig06_lenna.tif");
 	// draw_log_scale();
-	//process_ImageLog("images/Fig03_DFT.tif");
+	process_ImageLog("images/Fig03_DFT.tif");
 	//process_ImageLog_math("images/Fig03_DFT.tif");
 	//process_Log_LUT("images/Fig03_DFT.tif");
 	//draw_exp_scale();
