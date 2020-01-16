@@ -69,10 +69,10 @@ void contours(char* name)
 	{
 		Scalar color(rand()%256, rand()%256, rand()%256);
 		drawContours(result, contours, i, color, -1);
-		//Rect bb = boundingRect(contours[i]);
-		//char msg[10];
-		//sprintf(msg, "%d-th cnot", i);
-		//putText(src, msg, (bb.br() + bb.tl()) / 2, FONT_HERSHEY_PLAIN, 1.0, Scalar(255, 255, 255) - color, 2);
+		Rect bb = boundingRect(contours[i]);
+		char msg[10];
+		sprintf(msg, "%d-th cnot", i);
+		putText(src, msg, (bb.br() + bb.tl()) / 2, FONT_HERSHEY_PLAIN, 1.0, Scalar(255, 255, 255) - color, 2);
 	}
 
 	imshow("src", src);

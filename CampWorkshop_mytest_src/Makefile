@@ -9,7 +9,7 @@ LIBS = $(OPENCV)
 .PHONY: all clean
 
 $(PROG):$(SRCS)
-	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) contours.cpp number_recog.cpp $(LIBS)
+	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) coin_count.cpp $(LIBS)
 
 all: $(PROG)
 

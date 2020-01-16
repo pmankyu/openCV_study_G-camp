@@ -108,7 +108,7 @@ int main(int argc, char **argv){
 	//extract_line("images/Tangram/bird.png");
 	// extract_line("images/Fig04_house.tif");
 	//contours("images/Tangram/bird.png");
-	contours(name);
+	//contours(name);
 	//contours("images/Tangram/bird_test.png");
 	 // approxContour("images/Tangram/bird_cropping.jpg");
 	//count_Polygon("images/Tangram/bird_cropping.jpg");
@@ -123,7 +123,7 @@ int main(int argc, char **argv){
 	//img_box("../testimg/t_1.JPG");
 	
 	//watershed_test(name);
-/*
+
   int selector = 0;
   if (argc > 2) {
 	  selector = atoi(argv[2]);
@@ -140,7 +140,7 @@ int main(int argc, char **argv){
 	  default: cout << "none selected" << endl;
 	  }
   }
-  */
+
 }
 
 int solve1(char *name){
