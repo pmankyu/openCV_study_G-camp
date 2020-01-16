@@ -11,6 +11,7 @@ void morph_test(char *name);
 void Split_merge_test();
 int Video_test();
 int solve1(char *name);
+int solve_line();
 
 int main(int argc, char **argv){
 	char * name;
@@ -21,7 +22,8 @@ int main(int argc, char **argv){
 	else
 		name = argv[1];
 
-	solve1(name);
+	//solve1(name);
+	//solve_line();
 	//testVideo();
 	//Video_test();
 	//Split_merge_test();
@@ -105,7 +107,8 @@ int main(int argc, char **argv){
 	//Laplacian_Test("images/Fig04_house.tif");
 	//extract_line("images/Tangram/bird.png");
 	// extract_line("images/Fig04_house.tif");
-	// contours("images/Tangram/bird.png");
+	//contours("images/Tangram/bird.png");
+	contours(name);
 	//contours("images/Tangram/bird_test.png");
 	 // approxContour("images/Tangram/bird_cropping.jpg");
 	//count_Polygon("images/Tangram/bird_cropping.jpg");
@@ -161,6 +164,40 @@ int solve1(char *name){
 	imshow("process1", process1);
 
 	waitKey(0);
+}
+
+int solve_line(){
+	// gray 스케일로 바꿔준다.
+	// resize 한다. 연산속도를 위해서
+	// 관심영역지정 ROI
+
+	VideoCapture capture(".//images//blackbox.mp4");
+	Mat frame, grayImage;
+	bool stop = false;
+	while(1){
+		if (!stop){
+			capture >> frame;
+			if(frame.empty())
+				break;
+			
+			Mat gry;
+
+			imshow("frame",frame);
+
+			cvtColor(frame, gry, COLOR_BGR2GRAY);
+			resize(gry, gry, Size(600,600 * (frame.rows / (double)frame.cols)));
+
+			Rect ROI_rect((gry.cols/6.0), (gry.rows/2.0), (gry.cols*4.0/6.0), (gry.rows/2.0-10));
+			Mat ROI(gry, ROI_rect);
+			imshow("ROI",ROI);
+
+			Mat colorGray;
+			cvtColor(gry, colorGray, COLOR_GRAY2BGR);
+			imshow("colorGray", colorGray);
+
+			waitKey(33);
+		}
+	}
 }
 
 

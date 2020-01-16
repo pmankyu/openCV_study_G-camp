@@ -49,9 +49,9 @@ void contours(char* name)
 	Mat gray;
 
 	Mat canny;
-	GaussianBlur(src, src, Size(7, 7), 1.5, 1.5);
+	//GaussianBlur(src, src, Size(7, 7), 1.5, 1.5);
 	Canny(src, canny, 80, 130);
-	dilate(canny, canny, Mat(), Point(-1, -1), 2);
+	//dilate(canny, canny, Mat(), Point(-1, -1), 2);
 	imshow("Canny", canny);
 
 	//find contours
@@ -95,7 +95,7 @@ void extract_line(char* name)
 	cvtColor(img, gray, COLOR_BGR2GRAY);
 
 	Mat edge;
-	//edge ÃßÃâ (Canny, Sobel µî)
+	//edge ï¿½ï¿½ï¿½ï¿½ (Canny, Sobel ï¿½ï¿½)
 	GaussianBlur(gray, gray, Size(3, 3), 2);
 	Canny(gray, edge, 60, 150, 3);
 	imshow("edges", edge);
